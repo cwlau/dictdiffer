@@ -13,6 +13,8 @@ class DictDiffer(object):
     (2) items removed
     (3) keys same in both but changed values
     (4) keys same in both and unchanged values
+    (5) items added or changed
+    (6) items added, changed or removed
     """
     def __init__(self, current_dict, past_dict):
         self.current_dict, self.past_dict = current_dict, past_dict
@@ -42,3 +44,6 @@ class DictDiffer(object):
         # return set(k for k, v in self.current_dict.items()
         #           if k not in self.past_keys or v != self.past_dict[k])
         return self.added().union(self.changed())
+
+    def new_or_changed_or_removed(self):
+        return self.added().union(self.changed()).union(self.removed())

@@ -20,3 +20,9 @@ class TestDictDiffer(TestCase):
 
     def test_unchanged(self):
         self.assertEqual(self.d.unchanged(), set(['a']))
+
+    def test_new_or_changed(self):
+        self.assertEqual(self.d.new_or_changed(), set(['b', 'd']))
+
+    def test_new_or_changed_or_removed(self):
+        self.assertEqual(self.d.new_or_changed_or_removed(), set(['b', 'c', 'd']))
